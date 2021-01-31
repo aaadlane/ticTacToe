@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;700&display=swap"
+        rel="stylesheet">
     <title>Tic Tac Toe</title>
 </head>
 
@@ -12,25 +16,30 @@
 
     <main id="main">
         <h1 class="main-title"> Tic Tac Toe for noobs</h1>
-        
-        <div class="img"> 
+
+        <div class="img">
             <!--<img src="./assets/img/Tic-Tac-Toe-Sum-thm.jpg" alt="joshualerelou">-->
         </div>
 
         <div class="input">
-            <input type="text" placeholder="Player 1" id="player1" value="Player 1">
-            <!--<button class="btn-main">Add</button>-->
-            <input type="radio" name="player1icon" value="X" checked> X </input>           
-            <input type="radio" name="player1icon" value="O"> O </input>
-            
-            <input type="text" placeholder="Player 2" name="" id="player2" value="Player 2">
-            <!--<button class="btn-main">Add</button>-->
-            <input type="radio" name="player2icon" value="O" checked> O </input>
-            <input type="radio" name="player2icon" value="X"> X </input>
+            <h2> Select your input</h2>
+            <div class="input-one">
+                <input type="text" placeholder="Insert Player Name" id="player1" value="Player 1" class="input-radio">
+                <!--<button class="btn-main">Add</button>-->
+                <input type="radio" name="player1icon" value="X" checked> X </input>
+                <input type="radio" name="player1icon" value="O"> O </input>
+            </div>
+
+            <div class="input-two">
+                <input type="text" placeholder="Insert Player Name" name="" id="player2" value="Player 2" class="input-radio">
+                <!--<button class="btn-main">Add</button>-->
+                <input type="radio" name="player2icon" value="O" checked> O </input>
+                <input type="radio" name="player2icon" value="X"> X </input>
+            </div>
         </div>
 
-        <div class="start" style="background-color: blueviolet;">
-                <h2 class="title-start">Start</h2>
+        <div class="start">
+            <h2 class="title-start">Start</h2>
         </div>
     </main>
     <script src="./script.js"></script>

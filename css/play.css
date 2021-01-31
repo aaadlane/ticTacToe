@@ -1,0 +1,33 @@
+.grid-container{
+    width: 80%;
+    margin: auto;
+}
+
+#grid-play {
+    width: 80%;
+    margin: auto;
+    background-color: #f0efeb;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 30px 30px;
+    border: 3px solid #cb997e;
+    border-radius: 10px;
+    
+
+}
+
+
+.cell{
+    margin: auto;
+    background-color: #ddbea9;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 6rem;
+    color: #fca311 ;
+ 
+}
