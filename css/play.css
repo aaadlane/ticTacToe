@@ -1,4 +1,4 @@
-.grid-container{
+.grid-container {
     width: 80%;
     margin: auto;
 }
@@ -13,12 +13,12 @@
     gap: 30px 30px;
     border: 3px solid #cb997e;
     border-radius: 10px;
-    
+
 
 }
 
 
-.cell{
+.cell {
     margin: auto;
     background-color: #ddbea9;
     height: 150px;
@@ -28,6 +28,28 @@
     justify-content: center;
     font-weight: 700;
     font-size: 6rem;
-    color: #fca311 ;
- 
+    color: #fca311;
+
 }
+
+
+.player-highlight {
+    background-color: #fff;
+    width: 80%;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+}
+
+
+.now-playing-x,
+.now-playing-o {
+    width: 40%;
+    margin: auto;
+    background-color: red;
+}
+
+.now-playing-x {}
+
+.now-playing-o {}
