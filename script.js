@@ -8,6 +8,11 @@ let choix2 = ""
 
 let current_player = localStorage.choix1
 
+let random_pick = 0
+let turnPlayer = 1
+let tictactoeGridIA
+
+let winner = ""
 
 caseGame.forEach(function (choix) {
 
@@ -35,43 +40,306 @@ caseGame.forEach(function (choix) {
     let icon2 = localStorage.choix2
     writeicon2.innerHTML = icon2
 
-
     //Initialisation de la variable de fin
     let nextGame = 0
-    //permet 1 seul click sur la div avec once:true
-    choix.addEventListener("click", function () {
-        //Au clic, je met X ou O dans la case correspondante
-        event.target.innerText = current_player
 
+    if(player1==="IA" || player2 === "IA"){
+        tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+        console.log("Grille de jeu",tictactoeGridIA)
+        if (turnPlayer === 1){
+            turnPlayer = turnPlayer + 1
+            
+            //sleep(500)
+            console.log("current player :",current_player)
 
+            //Initialisation de la variable de fin
+            let nextGame = 0
+            
+            let random_pick = Math.floor(Math.random() * caseGame.length);
+            console.log(random_pick)
+            caseGame[random_pick].innerText = current_player
+            nextGame = winCondition(current_player)
+            //changement de joueur si la winCondition n'est pas réalisée
+            if (current_player==="X"){
+                current_player = "O"
 
-
-        // La fonction retourne true si il y a victoire ou égalité
-        nextGame = winCondition(current_player)
-
-        //si la condition de victoire est réalisé, on bascule sur une autre page
-        if (nextGame === true) {
-            window.open("./lastName.html", "_self")
+            }  
+            else {
+                current_player = "X"
+            }
+            
         }
+        tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+        console.log("Grille de jeu",tictactoeGridIA)  
 
-        //cchangement de joueur si la winCondition n'est pas réalisée
-        if (current_player === "X") {
-            current_player = "O"
-            document.querySelector(".now-playing").style.backgroundColor = "black"
-            document.querySelector(".now-playing2").style.backgroundColor = "white"
-
-        } else {
-            current_player = "X"
-            document.querySelector(".now-playing").style.backgroundColor = "white"
-            document.querySelector(".now-playing2").style.backgroundColor = "black"
+        choix.addEventListener("click", function(){
+            tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+            //Au clic, je met X ou O dans la case correspondante
+            event.target.innerText = current_player
 
 
-        }
-        console.log("joueur 1 :", player1)
-        console.log("joueur 2 :", player2)
-    }, {
-        once: true
-    })
+            // La fonction retourne true si il y a victoire ou égalité
+            nextGame = winCondition(current_player)
+            
+            //si la condition de victoire est réalisé, on bascule sur une autre page
+            if (nextGame === true){
+                localStorage.winner = current_player
+                console.log("Le joueur humain a gagné",current_player)
+                window.open("./lastName.html", "_self")
+            }
+            
+            if (nextGame != true){
+                //changement de joueur si la winCondition n'est pas réalisée
+                if (current_player==="X"){
+                    current_player = "O"
+                }  
+                else {
+                    current_player = "X"
+                }
+            }
+            turnPlayer = turnPlayer + 1
+            console.log ("tour a jouer", turnPlayer)
+
+            if (turnPlayer === 3){
+                tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+                turnPlayer = turnPlayer + 1
+                
+                
+                console.log("Tour 3: Remplissage Tictactoe Grid",tictactoeGridIA)
+    
+                //Initialisation de la variable de fin
+                let nextGame = 0
+                random_pick = Math.floor(Math.random() * caseGame.length);
+                while (tictactoeGridIA[random_pick] === "X" || tictactoeGridIA[random_pick] === "O"){ 
+                    random_pick = Math.floor(Math.random() * caseGame.length);
+                    console.log(random_pick)
+                }
+                caseGame[random_pick].innerText = current_player
+                nextGame = winCondition(current_player)
+                if (nextGame === true) {
+                    localStorage.winner = current_player
+                    window.open("./lastName.html", "_self")
+                }
+                //changement de joueur si la winCondition n'est pas réalisée
+                if (current_player==="X"){
+                    current_player = "O"
+    
+                }  
+                else {
+                    current_player = "X"
+                }
+                
+            }
+
+            if (turnPlayer === 5){
+                tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+                turnPlayer = turnPlayer + 1
+                
+                
+                console.log("current player :",current_player)
+    
+                //Initialisation de la variable de fin
+                let nextGame = 0
+                
+                random_pick = Math.floor(Math.random() * caseGame.length);
+                while (tictactoeGridIA[random_pick] === "X" || tictactoeGridIA[random_pick] === "O"){ 
+                    random_pick = Math.floor(Math.random() * caseGame.length);
+                    console.log(random_pick)
+                }
+
+                caseGame[random_pick].innerText = current_player
+                nextGame = winCondition(current_player)
+                if (nextGame === true) {
+                    localStorage.winner = current_player
+                    console.log("Le joueur IA a gagné 5",current_player)
+
+                    window.open("./lastName.html", "_self")
+                }
+                //changement de joueur si la winCondition n'est pas réalisée
+                if (current_player==="X"){
+                    current_player = "O"
+    
+                }  
+                else {
+                    current_player = "X"
+                }
+                
+            }
+
+            if (turnPlayer === 7){
+                tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+                turnPlayer = turnPlayer + 1
+                
+                
+                //console.log("current player :",current_player)
+    
+                //Initialisation de la variable de fin
+                let nextGame = 0
+                
+                random_pick = Math.floor(Math.random() * caseGame.length);
+                console.log("randompick before loop",random_pick)
+                while (tictactoeGridIA[random_pick] === "X" || tictactoeGridIA[random_pick] === "O"){ 
+                    random_pick = Math.floor(Math.random() * caseGame.length);
+                    console.log(random_pick)
+                }
+                console.log("randompick after loop",random_pick)
+                caseGame[random_pick].innerText = current_player
+                nextGame = winCondition(current_player)
+                if (nextGame === true) {
+                    localStorage.winner = current_player
+                    console.log("Le joueur IA a gagné 7",current_player)
+                    window.open("./lastName.html", "_self")
+                }
+                //changement de joueur si la winCondition n'est pas réalisée
+                if (current_player==="X"){
+                    current_player = "O"
+    
+                }  
+                else {
+                    current_player = "X"
+                }
+                
+            }
+
+            if (turnPlayer === 9){
+                tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+                turnPlayer = turnPlayer + 1
+                
+                
+                console.log("current player :",current_player)
+    
+                //Initialisation de la variable de fin
+                let nextGame = 0
+                
+                random_pick = Math.floor(Math.random() * caseGame.length);
+                while (tictactoeGridIA[random_pick] === "X" || tictactoeGridIA[random_pick] === "O"){ 
+                    random_pick = Math.floor(Math.random() * caseGame.length);
+                    console.log(random_pick)
+                }
+                caseGame[random_pick].innerText = current_player
+                nextGame = winCondition(current_player)
+                if (nextGame === true) {
+                    localStorage.winner = current_player
+                    console.log("Le joueur IA a gagné 9",current_player)
+                    window.open("./lastName.html", "_self")
+                }
+                //changement de joueur si la winCondition n'est pas réalisée
+                if (current_player==="X"){
+                    current_player = "O"
+    
+                }  
+                else {
+                    current_player = "X"
+                }
+                
+            }
+
+            if (turnPlayer === 11){
+                tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+                turnPlayer = turnPlayer + 1
+                
+                
+                console.log("current player :",current_player)
+    
+                //Initialisation de la variable de fin
+                let nextGame = 0
+                
+                random_pick = Math.floor(Math.random() * caseGame.length);
+                while (tictactoeGridIA[random_pick] === "X" || tictactoeGridIA[random_pick] === "O"){ 
+                    random_pick = Math.floor(Math.random() * caseGame.length);
+                    console.log(random_pick)
+                }
+                caseGame[random_pick].innerText = current_player
+                nextGame = winCondition(current_player)
+                if (nextGame === true) {
+                    localStorage.winner = current_player
+                    console.log("Le joueur IA a gagné 11",current_player)
+                    window.open("./lastName.html", "_self")
+                }
+                //changement de joueur si la winCondition n'est pas réalisée
+                if (current_player==="X"){
+                    current_player = "O"
+    
+                }  
+                else {
+                    current_player = "X"
+                }
+                
+            }
+
+            if (turnPlayer === 13){
+                tictactoeGridIA = [...caseGame].map(choix => choix.innerText)
+                turnPlayer = turnPlayer + 1
+                
+                
+                console.log("current player :",current_player)
+    
+                //Initialisation de la variable de fin
+                let nextGame = 0
+                
+                random_pick = Math.floor(Math.random() * caseGame.length);
+                while (tictactoeGridIA[random_pick] === "X" || tictactoeGridIA[random_pick] === "O"){ 
+                    random_pick = Math.floor(Math.random() * caseGame.length);
+                    console.log(random_pick)
+                }
+                caseGame[random_pick].innerText = current_player
+                nextGame = winCondition(current_player)
+                if (nextGame === true) {
+                    localStorage.winner = current_player
+                    window.open("./lastName.html", "_self")
+                }
+                //changement de joueur si la winCondition n'est pas réalisée
+                if (current_player==="X"){
+                    current_player = "O"
+    
+                }  
+                else {
+                    current_player = "X"
+                }
+                
+            }
+
+            }
+            ,{once:true})
+    }
+
+    if(player1 != "IA" && player2 != "IA"){
+        //permet 1 seul click sur la div avec once:true
+        choix.addEventListener("click", function () {
+            //Au clic, je met X ou O dans la case correspondante
+            event.target.innerText = current_player
+
+
+
+
+            // La fonction retourne true si il y a victoire ou égalité
+            nextGame = winCondition(current_player)
+
+            //si la condition de victoire est réalisé, on bascule sur une autre page
+            if (nextGame === true) {
+                localStorage.winner = current_player
+                window.open("./lastName.html", "_self")
+            }
+
+            //cchangement de joueur si la winCondition n'est pas réalisée
+            if (current_player === "X") {
+                current_player = "O"
+                document.querySelector(".now-playing").style.backgroundColor = "black"
+                document.querySelector(".now-playing2").style.backgroundColor = "white"
+
+            } else {
+                current_player = "X"
+                document.querySelector(".now-playing").style.backgroundColor = "white"
+                document.querySelector(".now-playing2").style.backgroundColor = "black"
+
+
+            }
+            console.log("joueur 1 :", player1)
+            console.log("joueur 2 :", player2)
+        }, {
+            once: true
+        })
+    }
 })
 
 function winCondition(icon) {
@@ -136,6 +404,4 @@ document.querySelector(".start").addEventListener("click", function () {
 
 })
 
-// function showPlayer(player1, player2){
-//     if player1 
-// }
+
