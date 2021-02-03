@@ -57,13 +57,13 @@ caseGame.forEach(function (choix) {
         //cchangement de joueur si la winCondition n'est pas réalisée
         if (current_player === "X") {
             current_player = "O"
-            document.querySelector(".now-playing").style.backgroundColor = "black"
-            document.querySelector(".now-playing2").style.backgroundColor = "white"
+            document.querySelector(".now-playing").style.backgroundColor = "#A6495A"
+            document.querySelector(".now-playing2").style.backgroundColor = "#04BFAD"
 
         } else {
             current_player = "X"
-            document.querySelector(".now-playing").style.backgroundColor = "white"
-            document.querySelector(".now-playing2").style.backgroundColor = "black"
+            document.querySelector(".now-playing").style.backgroundColor = "#04BFAD"
+            document.querySelector(".now-playing2").style.backgroundColor = "#A6495A"
 
 
         }
